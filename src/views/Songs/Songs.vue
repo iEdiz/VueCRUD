@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(song, index) in this.songs" :key="index">
+            <tr v-for="(song, index) in songs" :key="index">
               <td>{{ song.title }}</td>
               <td>{{ song.artist }}</td>
               <td>{{ song.year }}</td>
@@ -41,24 +41,29 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
 import axios from "axios";
 
 export default {
   name: "songs",
-  data() {
-    return {
-      songs: [],
-    };
-  },
-  mounted() {
-    this.getSongs();
-  },
-  methods: {
-    getSongs() {
+  setup() {
+    // Using ref to create a reactive property
+    const songs = ref([]);
+
+    // Function to get songs
+    const getSongs = () => {
       axios.get("http://localhost:3000/medieval_songs").then((res) => {
-        this.songs = res.data;
+        songs.value = res.data;
       });
-    },
+    };
+
+    // Fetch songs when component is mounted
+    onMounted(getSongs);
+
+    return {
+      songs,
+      getSongs,
+    };
   },
 };
 </script>

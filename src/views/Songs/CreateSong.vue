@@ -1,7 +1,3 @@
-import type { log } from 'console'; import type { log } from 'console'; import type {
-model } from 'mongoose'; import type { textChangeRangeIsUnchanged } from 'typescript';
-import type { Axios } from 'axios'; import type SongVue from './Song.vue'; import type {
-model } from 'mongoose';
 <template>
   <div class="container mt-5">
     <div class="card">
@@ -10,24 +6,24 @@ model } from 'mongoose';
       </div>
       <div class="card-body">
         <div class="mb-3">
-          <label for="">Title</label>
-          <input type="text" v-model="model.song.title" class="form-control" />
+          <label for="title">Title</label>
+          <input type="text" v-model="title" class="form-control" />
         </div>
         <div class="mb-3">
-          <label for="">Artist</label>
-          <input type="text" v-model="model.song.artist" class="form-control" />
+          <label for="artist">Artist</label>
+          <input type="text" v-model="artist" class="form-control" />
         </div>
         <div class="mb-3">
-          <label for="">Year</label>
-          <input type="text" v-model="model.song.year" class="form-control" />
+          <label for="year">Year</label>
+          <input type="text" v-model="year" class="form-control" />
         </div>
         <div class="mb-3">
-          <label for="">Genre</label>
-          <input type="text" v-model="model.song.genre" class="form-control" />
+          <label for="genre">Genre</label>
+          <input type="text" v-model="genre" class="form-control" />
         </div>
         <div class="mb-3">
-          <label for="">Duration</label>
-          <input type="text" v-model="model.song.duration" class="form-control" />
+          <label for="duration">Duration</label>
+          <input type="text" v-model="duration" class="form-control" />
         </div>
         <div class="mb-3">
           <button type="button" @click="saveSong" class="btn btn-primary">Save</button>
@@ -38,43 +34,56 @@ model } from 'mongoose';
 </template>
 
 <script>
+import { ref } from "vue";
 import axios from "axios";
+
 export default {
   name: "songCreate",
 
-  data() {
-    return {
-      model: {
-        song: {
-          title: "",
-          artist: "",
-          year: "",
-          genre: "",
-          duration: "",
-        },
-      },
-    };
-  },
-  methods: {
-    saveSong() {
+  setup() {
+    // Using ref to create reactive property
+    const title = ref("");
+    const artist = ref("");
+    const year = ref("");
+    const genre = ref("");
+    const duration = ref("");
+
+    // Function to save the song
+    const saveSong = () => {
+      const songData = {
+        title: title.value,
+        artist: artist.value,
+        year: year.value,
+        genre: genre.value,
+        duration: duration.value,
+      };
+
       axios
-        .post("http://localhost:3000/medieval_songs", this.model.song)
+        .post("http://localhost:3000/medieval_songs", songData)
         .then((res) => {
           console.log(res.data);
           alert("Song Added Successfully!");
 
-          this.model.song = {
-            title: "",
-            artist: "",
-            year: "",
-            genre: "",
-            duration: "",
-          };
+          // Resetting the values
+          title.value = "";
+          artist.value = "";
+          year.value = "";
+          genre.value = "";
+          duration.value = "";
         })
         .catch((error) => {
           console.log(error);
         });
-    },
+    };
+
+    return {
+      title,
+      artist,
+      year,
+      genre,
+      duration,
+      saveSong,
+    };
   },
 };
 </script>
