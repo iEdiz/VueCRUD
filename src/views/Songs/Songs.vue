@@ -50,42 +50,40 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref, onMounted, getCurrentInstance } from "vue";
 import axios from "axios";
 
-export default {
-  name: "songs",
-  setup() {
-    const songs = ref([]);
-    let songId = null;
+type Song = {
+  id: number;
+  title: string;
+  artist: string;
+  year: number;
+  genre: string;
+  duration: string;
+};
 
-    const getSongs = () => {
-      axios.get("http://localhost:3000/medieval_songs").then((res) => {
-        songs.value = res.data;
-      });
-    };
+const songs = ref<Song[]>([]);
+let songId = null;
 
-    const deleteSong = (songId) => {
-      if (confirm("Are you sure?"))
-        axios.delete(`http://localhost:3000/medieval_songs/${songId}`).then((res) => {
-          alert("Song Deleted!");
-          getSongs();
-        });
-    };
+const getSongs = () => {
+  axios.get("http://localhost:3000/medieval_songs").then((res) => {
+    songs.value = res.data;
+  });
+};
 
-    const instance = getCurrentInstance();
-
-    onMounted(() => {
-      songId = instance.proxy.$route.params.id;
+const deleteSong = (songId: number) => {
+  if (confirm("Are you sure?"))
+    axios.delete(`http://localhost:3000/medieval_songs/${songId}`).then((res) => {
+      alert("Song Deleted!");
       getSongs();
     });
-
-    return {
-      songs,
-      getSongs,
-      deleteSong,
-    };
-  },
 };
+
+const instance = getCurrentInstance();
+
+onMounted(() => {
+  songId = instance!.proxy!.$route.params.id;
+  getSongs();
+});
 </script>

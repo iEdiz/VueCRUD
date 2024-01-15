@@ -1,12 +1,12 @@
 {
   "medieval_songs": [
     {
-      "id": "1",
       "title": "The Minstrel's Lament",
       "artist": "Sir Troubadour",
       "year": 1250,
       "genre": "Ballad",
-      "duration": "4:30"
+      "duration": "4:30",
+      "id": "1"
     },
     {
       "id": "2",

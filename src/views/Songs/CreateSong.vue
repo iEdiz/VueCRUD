@@ -33,54 +33,40 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref } from "vue";
 import axios from "axios";
 
-export default {
-  name: "songCreate",
+const title = ref("");
+const artist = ref("");
+const year = ref("");
+const genre = ref("");
+const duration = ref("");
 
-  setup() {
-    const title = ref("");
-    const artist = ref("");
-    const year = ref("");
-    const genre = ref("");
-    const duration = ref("");
+const saveSong = () => {
+  const songData = {
+    title: title.value,
+    artist: artist.value,
+    year: year.value,
+    genre: genre.value,
+    duration: duration.value,
+  };
 
-    const saveSong = () => {
-      const songData = {
-        title: title.value,
-        artist: artist.value,
-        year: year.value,
-        genre: genre.value,
-        duration: duration.value,
-      };
+  axios
+    .post("http://localhost:3000/medieval_songs", songData)
+    .then((res) => {
+      console.log(res.data);
+      alert("Song Added Successfully!");
 
-      axios
-        .post("http://localhost:3000/medieval_songs", songData)
-        .then((res) => {
-          console.log(res.data);
-          alert("Song Added Successfully!");
-
-          title.value = "";
-          artist.value = "";
-          year.value = "";
-          genre.value = "";
-          duration.value = "";
-        })
-        .catch((error) => {
-          alert('Error adding a song!');
-        });
-    };
-
-    return {
-      title,
-      artist,
-      year,
-      genre,
-      duration,
-      saveSong,
-    };
-  },
+      title.value = "";
+      artist.value = "";
+      year.value = "";
+      genre.value = "";
+      duration.value = "";
+    })
+    .catch((error) => {
+      alert("Error adding a song!");
+    });
 };
 </script>
+
