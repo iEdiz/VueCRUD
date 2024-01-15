@@ -29,8 +29,18 @@
               <td>{{ song.genre }}</td>
               <td>{{ song.duration }}</td>
               <td>
-                <RouterLink to="/" class="btn btn-success">Edit</RouterLink>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <RouterLink
+                  :to="{ path: `/songs/${song.id}/edit` }"
+                  class="btn btn-success mx-2"
+                  >Edit</RouterLink
+                >
+                <button
+                  type="button"
+                  @click="deleteSong(song.id)"
+                  class="btn btn-danger mx-2"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>
@@ -41,28 +51,40 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, getCurrentInstance } from "vue";
 import axios from "axios";
 
 export default {
   name: "songs",
   setup() {
-    // Using ref to create a reactive property
     const songs = ref([]);
+    let songId = null;
 
-    // Function to get songs
     const getSongs = () => {
       axios.get("http://localhost:3000/medieval_songs").then((res) => {
         songs.value = res.data;
       });
     };
 
-    // Fetch songs when component is mounted
-    onMounted(getSongs);
+    const deleteSong = (songId) => {
+      if (confirm("Are you sure?"))
+        axios.delete(`http://localhost:3000/medieval_songs/${songId}`).then((res) => {
+          alert("Song Deleted!");
+          getSongs();
+        });
+    };
+
+    const instance = getCurrentInstance();
+
+    onMounted(() => {
+      songId = instance.proxy.$route.params.id;
+      getSongs();
+    });
 
     return {
       songs,
       getSongs,
+      deleteSong,
     };
   },
 };

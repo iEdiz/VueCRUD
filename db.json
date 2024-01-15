@@ -17,12 +17,12 @@
       "duration": "3:55"
     },
     {
-      "id": "3",
       "title": "Knight's Oath",
       "artist": "Sir Serenade",
       "year": 1267,
       "genre": "Epic Ballad",
-      "duration": "5:12"
+      "duration": "5:12",
+      "id": "3"
     },
     {
       "id": "4",
@@ -31,14 +31,6 @@
       "year": 1243,
       "genre": "Instrumental",
       "duration": "2:58"
-    },
-    {
-      "id": "5",
-      "title": "Dance of the Jester",
-      "artist": "Jovial Jester Trio",
-      "year": 1302,
-      "genre": "Dance",
-      "duration": "3:20"
     },
     {
       "id": "6",
@@ -159,30 +151,6 @@
       "year": 1277,
       "genre": "Elegy",
       "duration": "5:05"
-    },
-    {
-      "id": "3270",
-      "title": "test",
-      "artist": "test1",
-      "year": "2022",
-      "genre": "test",
-      "duration": "3:20"
-    },
-    {
-      "id": "57ac",
-      "title": "aaa",
-      "artist": "dsd",
-      "year": "dasd",
-      "genre": "asadasd",
-      "duration": "asdd"
-    },
-    {
-      "id": "e608",
-      "title": "asd",
-      "artist": "asd",
-      "year": "asd",
-      "genre": "asd",
-      "duration": "asd"
     }
   ]
 }

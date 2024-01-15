@@ -2,7 +2,7 @@
   <div class="container mt-5">
     <div class="card">
       <div class="card-header">
-        <h4>Add Song</h4>
+        <h4>Edit Song</h4>
       </div>
       <div class="card-body">
         <div class="mb-3">
@@ -26,7 +26,9 @@
           <input type="text" v-model="duration" class="form-control" />
         </div>
         <div class="mb-3">
-          <button type="button" @click="saveSong" class="btn btn-primary">Save</button>
+          <button type="button" @click="updateSong" class="btn btn-primary">
+            Update
+          </button>
         </div>
       </div>
     </div>
@@ -34,21 +36,44 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted, getCurrentInstance } from "vue";
 import axios from "axios";
 
 export default {
-  name: "songCreate",
+  name: "songEdit",
 
   setup() {
+    // Using ref to create reactive properties
     const title = ref("");
     const artist = ref("");
     const year = ref("");
     const genre = ref("");
     const duration = ref("");
+    const songData = ref(null);
+    let songId = null;
 
-    const saveSong = () => {
-      const songData = {
+    const getSongData = () => {
+      axios
+        .get(`http://localhost:3000/medieval_songs/${songId}`)
+        .then((res) => {
+          songData.value = res.data;
+          title.value = res.data.title;
+          artist.value = res.data.artist;
+          year.value = res.data.year;
+          genre.value = res.data.genre;
+          duration.value = res.data.duration;
+        })
+        .catch((error) => {
+          if (error.response) {
+            if (error.response.status === 404) {
+              alert("Invalid Song ID");
+            }
+          }
+        });
+    };
+
+    const updateSong = () => {
+      const updatedSongData = {
         title: title.value,
         artist: artist.value,
         year: year.value,
@@ -57,21 +82,22 @@ export default {
       };
 
       axios
-        .post("http://localhost:3000/medieval_songs", songData)
+        .put(`http://localhost:3000/medieval_songs/${songId}`, updatedSongData)
         .then((res) => {
           console.log(res.data);
-          alert("Song Added Successfully!");
-
-          title.value = "";
-          artist.value = "";
-          year.value = "";
-          genre.value = "";
-          duration.value = "";
+          alert("Song Edited!");
         })
         .catch((error) => {
-          alert('Error adding a song!');
+          alert("Something went wrong while editing!");
         });
     };
+
+    const instance = getCurrentInstance();
+
+    onMounted(() => {
+      songId = instance.proxy.$route.params.id;
+      getSongData(songId);
+    });
 
     return {
       title,
@@ -79,7 +105,8 @@ export default {
       year,
       genre,
       duration,
-      saveSong,
+      songData,
+      updateSong,
     };
   },
 };
