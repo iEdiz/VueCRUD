@@ -1,50 +1,61 @@
 <template>
-  <div class="container">
-    <div class="card">
-      <div class="card-header">
+  <div class="container mt-3" style="max-width: 900px">
+    <div class="card mb-3">
+      <div class="card-header p-3" style="background-color: #d6a5ab">
         <h4>
           Songs
-          <RouterLink to="/songs/create" class="btn btn-primary float-end"
+          <RouterLink
+            to="/songs/create"
+            class="btn btn-secondary float-end"
+            style="background-color: #fcded7; color: black"
             >Add song</RouterLink
           >
         </h4>
       </div>
-      <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Artist</th>
-              <th>Year</th>
-              <th>Genre</th>
-              <th>Duration</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(song, index) in songs" :key="index">
-              <td>{{ song.title }}</td>
-              <td>{{ song.artist }}</td>
-              <td>{{ song.year }}</td>
-              <td>{{ song.genre }}</td>
-              <td>{{ song.duration }}</td>
-              <td>
-                <RouterLink
-                  :to="{ path: `/songs/${song.id}/edit` }"
-                  class="btn btn-success mx-2"
-                  >Edit</RouterLink
-                >
-                <button
-                  type="button"
-                  @click="deleteSong(song.id)"
-                  class="btn btn-danger mx-2"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="card-body" style="background-color: #e3c3c8">
+        <div class="row">
+          <div v-for="(song, index) in songs" :key="index" class="col-md-4 mb-3">
+            <div
+              class="card"
+              style="
+                width: 100%;
+                background-color: #f7dcd7;
+                border-radius: 15px;
+                box-shadow: 0 0 5px 2px #8e787b;
+              "
+            >
+              <RouterLink :to="{ path: `/songs/${song.id}` }"
+                ><img
+                  :src="song.image"
+                  alt=""
+                  class="card-img-top"
+                  :style="{
+                    width: '100%',
+                    height: '200px',
+                    objectFit: 'cover',
+                    borderRadius: '13px 13px 0 0',
+                  }"
+              /></RouterLink>
+              <div class="card-body">
+                <div class="btn-group" role="group" style="width: 100%; gap: 30px">
+                  <RouterLink
+                    :to="{ path: `/songs/${song.id}/edit` }"
+                    class="btn btn-dark me-auto"
+                    style="border-radius: 10px; background-color: #d3ead4; color: black"
+                    >Edit</RouterLink
+                  >
+                  <button
+                    @click="deleteSong(song.id)"
+                    class="btn btn-dark ms-auto"
+                    style="border-radius: 10px; background-color: #f6bcb1; color: black"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -61,10 +72,10 @@ type Song = {
   year: number;
   genre: string;
   duration: string;
+  image: string;
 };
 
 const songs = ref<Song[]>([]);
-let songId = null;
 
 const getSongs = () => {
   axios.get("http://localhost:3000/medieval_songs").then((res) => {
@@ -83,7 +94,7 @@ const deleteSong = (songId: number) => {
 const instance = getCurrentInstance();
 
 onMounted(() => {
-  songId = instance!.proxy!.$route.params.id;
+  const songId = instance!.proxy!.$route.params.id;
   getSongs();
 });
 </script>

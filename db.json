@@ -1,19 +1,12 @@
 {
   "medieval_songs": [
     {
-      "title": "The Minstrel's Lament",
-      "artist": "Sir Troubadour",
-      "year": 1250,
-      "genre": "Ballad",
-      "duration": "4:30",
-      "id": "1"
-    },
-    {
       "id": "2",
       "title": "Castle Walls",
       "artist": "Lady Melody",
       "year": 1285,
       "genre": "Courtly Love Song",
+      "image": "https://images.unsplash.com/photo-1548445929-4f60a497f851?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "duration": "3:55"
     },
     {
@@ -22,6 +15,7 @@
       "year": 1267,
       "genre": "Epic Ballad",
       "duration": "5:12",
+      "image": "https://images.unsplash.com/photo-1553986782-9f6de60b51b4?q=80&w=2049&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "id": "3"
     },
     {
@@ -30,6 +24,7 @@
       "artist": "Lady Harpist",
       "year": 1243,
       "genre": "Instrumental",
+      "image": "https://images.unsplash.com/photo-1560536270-b5855082dd85?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "duration": "2:58"
     },
     {
@@ -38,6 +33,7 @@
       "artist": "Greenwood Minstrels",
       "year": 1278,
       "genre": "Folk",
+      "image": "https://plus.unsplash.com/premium_photo-1661964035968-43923ed0b85d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "duration": "4:45"
     },
     {
@@ -46,6 +42,7 @@
       "artist": "Wizard's Ensemble",
       "year": 1290,
       "genre": "Magical Incantation",
+      "image": "https://images.unsplash.com/photo-1554581601-533131774e36?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "duration": "6:10"
     },
     {
@@ -54,6 +51,7 @@
       "artist": "Royal Trouveres",
       "year": 1260,
       "genre": "Celebratory",
+      "image": "https://plus.unsplash.com/premium_photo-1677620678394-385d08680e0b?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "duration": "3:48"
     },
     {
@@ -62,6 +60,7 @@
       "artist": "Dame Waltzer",
       "year": 1275,
       "genre": "Waltz",
+      "image": "https://images.unsplash.com/photo-1581929955252-64ceec9c2938?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "duration": "4:15"
     },
     {
@@ -70,87 +69,17 @@
       "artist": "Sir War Drummer",
       "year": 1311,
       "genre": "War Song",
+      "image": "https://plus.unsplash.com/premium_photo-1680300755404-17b90d4523e4?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "duration": "5:25"
     },
     {
-      "id": "11",
       "title": "Tavern Tales",
       "artist": "Alehouse Minstrels",
       "year": 1235,
       "genre": "Folk Drinking Song",
-      "duration": "2:30"
-    },
-    {
-      "id": "12",
-      "title": "Mystic Revelry",
-      "artist": "Enigmatic Bards",
-      "year": 1288,
-      "genre": "Mystical",
-      "duration": "4:02"
-    },
-    {
-      "id": "13",
-      "title": "King's Court Jig",
-      "artist": "Royal Jesters",
-      "year": 1255,
-      "genre": "Jig",
-      "duration": "3:12"
-    },
-    {
-      "id": "14",
-      "title": "Lady's Lullaby",
-      "artist": "Lady Nightingale",
-      "year": 1269,
-      "genre": "Lullaby",
-      "duration": "2:45"
-    },
-    {
-      "id": "15",
-      "title": "Bard's Serenade",
-      "artist": "Bardic Ensemble",
-      "year": 1248,
-      "genre": "Romantic Serenade",
-      "duration": "4:40"
-    },
-    {
-      "id": "16",
-      "title": "Dragon's Roar",
-      "artist": "Slaying Symphony",
-      "year": 1305,
-      "genre": "Epic Battle Anthem",
-      "duration": "6:45"
-    },
-    {
-      "id": "17",
-      "title": "Whispers of the Wind",
-      "artist": "Wind Whisperers",
-      "year": 1272,
-      "genre": "Ambient",
-      "duration": "3:30"
-    },
-    {
-      "id": "18",
-      "title": "Merry Band of Outlaws",
-      "artist": "Robin's Revelers",
-      "year": 1220,
-      "genre": "Folk",
-      "duration": "3:15"
-    },
-    {
-      "id": "19",
-      "title": "Noble Hornpipe",
-      "artist": "Lord Piper",
-      "year": 1283,
-      "genre": "Pipe Dance",
-      "duration": "4:18"
-    },
-    {
-      "id": "20",
-      "title": "Queen's Elegy",
-      "artist": "Royal Harpist",
-      "year": 1277,
-      "genre": "Elegy",
-      "duration": "5:05"
+      "duration": "2:30",
+      "image": "https://images.unsplash.com/photo-1472502516535-eeee381bb45e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "id": "11"
     }
   ]
 }

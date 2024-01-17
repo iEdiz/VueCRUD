@@ -1,10 +1,10 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5" style="max-width: 700px">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header" style="background-color: #9991ba">
         <h4>Add Song</h4>
       </div>
-      <div class="card-body">
+      <div class="card-body" style="background-color: #c9c3e3">
         <div class="mb-3">
           <label for="title">Title</label>
           <input type="text" v-model="title" class="form-control" />
@@ -26,7 +26,14 @@
           <input type="text" v-model="duration" class="form-control" />
         </div>
         <div class="mb-3">
-          <button type="button" @click="saveSong" class="btn btn-primary">Save</button>
+          <button
+            type="button"
+            @click="saveSong"
+            class="btn btn-dark"
+            style="background-color: #998fc4; color: black"
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
@@ -69,4 +76,3 @@ const saveSong = () => {
     });
 };
 </script>
-

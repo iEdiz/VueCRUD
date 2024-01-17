@@ -1,38 +1,43 @@
 <template>
-  <div class="container mt-5" style="max-width: 900px">
-    <div class="card bg-light">
-      <div class="card-header bg-secondary text-white">
-        <h4>Edit Song</h4>
+  <div class="container mt-4" style="max-width: 650px">
+    <div class="card" style="box-shadow: 0 0 4px 4px #6a846b; border-radius: 10px">
+      <div class="card-header p-3" style="background-color: #b1cfb2">
+        <h4 class="mb-0">Song Details</h4>
       </div>
-      <div class="card-body">
-        <div class="mb-3">
-          <label for="title" class="form-label">Title:</label>
-          <input type="text" v-model="title" class="form-control" />
+      <div
+        class="card-body"
+        style="background-color: #d3ead4; border-radius: 0 0 10px 10px"
+      >
+        <div class="mb-3 text-center">
+          <img
+            :src="image"
+            alt=""
+            class="img-fluid"
+            style="contain; border-radius: 10px;"
+          />
         </div>
         <div class="mb-3">
-          <label for="artist" class="form-label">Artist:</label>
-          <input type="text" v-model="artist" class="form-control" />
+          <h1 class="display-4">{{ title }}</h1>
         </div>
         <div class="mb-3">
-          <label for="year" class="form-label">Year:</label>
-          <input type="text" v-model="year" class="form-control" />
+          <h2 class="h4">{{ artist }}</h2>
         </div>
         <div class="mb-3">
-          <label for="genre" class="form-label">Genre:</label>
-          <input type="text" v-model="genre" class="form-control" />
+          <h4 class="h6">Genre: {{ genre }}</h4>
         </div>
         <div class="mb-3">
-          <label for="duration" class="form-label">Duration:</label>
-          <input type="text" v-model="duration" class="form-control" />
+          <h5 class="h6">Creation Year: {{ year }}</h5>
         </div>
         <div class="mb-3">
-          <label for="image" class="form-label">Image URL:</label>
-          <input type="text" v-model="image" class="form-control" />
+          <h6>Duration: {{ duration }}</h6>
         </div>
-        <div class="mb-3">
-          <button type="button" @click="updateSong" class="btn btn-success">
-            Update
-          </button>
+        <div class="mb-2">
+          <RouterLink
+            :to="{ path: `/songs` }"
+            class="btn btn-success"
+            style="background-color: #97c699; color: black"
+            >Back</RouterLink
+          >
         </div>
       </div>
     </div>
@@ -48,8 +53,8 @@ const artist = ref("");
 const year = ref("");
 const genre = ref("");
 const duration = ref("");
-const image = ref("");
 const songData = ref(null);
+const image = ref("");
 let songId: string | string[] | null = null;
 
 const getSongData = () => {
@@ -80,7 +85,6 @@ const updateSong = () => {
     year: year.value,
     genre: genre.value,
     duration: duration.value,
-    image: image.value,
   };
 
   axios
@@ -94,7 +98,6 @@ const updateSong = () => {
     });
 };
 
-// Pielaiž klāt iekšējai komponenetes instancei (vertibai)
 const instance = getCurrentInstance();
 
 onMounted(() => {
