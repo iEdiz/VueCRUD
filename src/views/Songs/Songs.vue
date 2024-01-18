@@ -2,7 +2,7 @@
   <div class="container mt-3" style="max-width: 900px">
     <div class="card mb-3">
       <div class="card-header p-3" style="background-color: #d6a5ab">
-        <h4>
+        <h4 style="font-size: 40px" class="mb-0">
           Songs
           <RouterLink
             to="/songs/create"
@@ -64,6 +64,7 @@
 <script setup lang="ts">
 import { ref, onMounted, getCurrentInstance } from "vue";
 import axios from "axios";
+import $toast from "@/components/toast";
 
 type Song = {
   id: number;
@@ -84,11 +85,10 @@ const getSongs = () => {
 };
 
 const deleteSong = (songId: number) => {
-  if (confirm("Are you sure?"))
-    axios.delete(`http://localhost:3000/medieval_songs/${songId}`).then((res) => {
-      alert("Song Deleted!");
-      getSongs();
-    });
+  axios.delete(`http://localhost:3000/medieval_songs/${songId}`).then((res) => {
+    $toast.success("Song Deleted Successfully!");
+    getSongs();
+  });
 };
 
 const instance = getCurrentInstance();

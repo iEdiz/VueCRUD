@@ -43,6 +43,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import axios from "axios";
+import $toast from "@/components/toast";
 
 const title = ref("");
 const artist = ref("");
@@ -63,16 +64,18 @@ const saveSong = () => {
     .post("http://localhost:3000/medieval_songs", songData)
     .then((res) => {
       console.log(res.data);
-      alert("Song Added Successfully!");
+      $toast.success("Song Added Successfully!");
 
       title.value = "";
       artist.value = "";
       year.value = "";
       genre.value = "";
       duration.value = "";
+
+      window.location.href = "/songs";
     })
     .catch((error) => {
-      alert("Error adding a song!");
+      $toast.error("Error adding a song!");
     });
 };
 </script>

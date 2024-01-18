@@ -42,6 +42,7 @@
 <script setup lang="ts">
 import { ref, onMounted, getCurrentInstance } from "vue";
 import axios from "axios";
+import $toast from "@/components/toast";
 
 const title = ref("");
 const artist = ref("");
@@ -86,11 +87,14 @@ const updateSong = () => {
   axios
     .put(`http://localhost:3000/medieval_songs/${songId}`, updatedSongData)
     .then((res) => {
-      console.log(res.data);
-      alert("Song Edited!");
+      $toast.success("Song Edited!");
+
+      setTimeout(() => {
+        window.location.href = "/songs";
+      }, 800);
     })
     .catch((error) => {
-      alert("Something went wrong while editing!");
+      $toast.error("Something went wrong while editing!");
     });
 };
 

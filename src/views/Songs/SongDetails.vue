@@ -78,26 +78,6 @@ const getSongData = () => {
     });
 };
 
-const updateSong = () => {
-  const updatedSongData = {
-    title: title.value,
-    artist: artist.value,
-    year: year.value,
-    genre: genre.value,
-    duration: duration.value,
-  };
-
-  axios
-    .put(`http://localhost:3000/medieval_songs/${songId}`, updatedSongData)
-    .then((res) => {
-      console.log(res.data);
-      alert("Song Edited!");
-    })
-    .catch((error) => {
-      alert("Something went wrong while editing!");
-    });
-};
-
 const instance = getCurrentInstance();
 
 onMounted(() => {
