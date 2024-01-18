@@ -6,7 +6,7 @@
           Songs
           <RouterLink
             to="/songs/create"
-            class="btn btn-secondary float-end"
+            class="btn btn-secondary float-end mt-1"
             style="background-color: #fcded7; color: black"
             >Add song</RouterLink
           >
