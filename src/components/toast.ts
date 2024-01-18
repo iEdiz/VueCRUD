@@ -4,7 +4,7 @@ import 'vue-toast-notification/dist/theme-default.css'
 
 const toastApp = createApp({})
 toastApp.use(VueToast, {
-    position: 'top-right'
+  position: 'top-right'
 })
 const $toast = toastApp.config.globalProperties.$toast
 

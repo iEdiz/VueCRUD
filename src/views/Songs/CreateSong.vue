@@ -26,6 +26,10 @@
           <input type="text" v-model="duration" class="form-control" />
         </div>
         <div class="mb-3">
+          <label for="duration">Image</label>
+          <input type="text" v-model="image" class="form-control" />
+        </div>
+        <div class="mb-3">
           <button
             type="button"
             @click="saveSong"
@@ -50,6 +54,7 @@ const artist = ref("");
 const year = ref("");
 const genre = ref("");
 const duration = ref("");
+const image = ref("");
 
 const saveSong = () => {
   const songData = {
@@ -58,6 +63,7 @@ const saveSong = () => {
     year: year.value,
     genre: genre.value,
     duration: duration.value,
+    image: image.value,
   };
 
   axios
@@ -71,8 +77,11 @@ const saveSong = () => {
       year.value = "";
       genre.value = "";
       duration.value = "";
+      image.value = "";
 
-      window.location.href = "/songs";
+      setTimeout(() => {
+        window.location.href = "/songs";
+      }, 800);
     })
     .catch((error) => {
       $toast.error("Error adding a song!");
